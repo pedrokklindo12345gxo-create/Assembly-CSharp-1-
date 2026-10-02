@@ -1,4 +1,4 @@
-name: Compilar Assembly-CSharp
+name: Descompactar e Compilar DLL
 
 on: [push]
 
@@ -10,16 +10,23 @@ jobs:
     - name: Baixar código do repositório
       uses: actions/checkout@v4
 
-    - name: Configurar .NET Framework / SDK
+    - name: Descompactar o arquivo ZIP
+      shell: powershell
+      run: Expand-Archive -Path "Assembly-CSharp.zip" -DestinationPath "projeto_extraido" -Force
+
+    - name: Configurar .NET SDK
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: '8.0' # O SDK moderno consegue compilar versões antigas se o TargetFramework estiver configurado
+        dotnet-version: '8.0'
 
-    - name: Compilar projeto (Release)
-      run: dotnet build Assembly-CSharp.csproj --configuration Release
+    - name: Compilar o projeto
+      shell: powershell
+      run: |
+        cd projeto_extraido
+        dotnet build --configuration Release
 
     - name: Salvar a DLL gerada
       uses: actions/upload-artifact@v4
       with:
-        name: Assembly-CSharp-dll
-        path: **/bin/Release/**/*.dll
+        name: minha-dll-final
+        path: '**/bin/Release/**/*.dll'
