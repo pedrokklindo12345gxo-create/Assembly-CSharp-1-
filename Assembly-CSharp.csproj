@@ -2,9 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
-    <LangVersion>7.3</LangVersion> <!-- Força uma versão mais antiga do C# que aceita a sintaxe do descompilador -->
+    <LangVersion>7.3</LangVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <!-- Desativa checagens rígidas que causam esses erros em códigos antigos -->
+    <NoWarn>1701;1702;0253;0414;0169</NoWarn>
   </PropertyGroup>
 
 </Project>
