@@ -1,0 +1,25 @@
+name: Compilar Assembly-CSharp
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Baixar código do repositório
+      uses: actions/checkout@v4
+
+    - name: Configurar .NET Framework / SDK
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0' # O SDK moderno consegue compilar versões antigas se o TargetFramework estiver configurado
+
+    - name: Compilar projeto (Release)
+      run: dotnet build Assembly-CSharp.csproj --configuration Release
+
+    - name: Salvar a DLL gerada
+      uses: actions/upload-artifact@v4
+      with:
+        name: Assembly-CSharp-dll
+        path: **/bin/Release/**/*.dll
