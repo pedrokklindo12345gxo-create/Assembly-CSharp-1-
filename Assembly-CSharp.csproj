@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework> <!-- A maioria dos jogos Unity mais antigos usa .NET Framework 4.7.2. Se for Unity mais recente (2021+), pode ser netstandard2.1 ou net6.0 -->
+    <LangVersion>latest</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Aqui você pode incluir referências caso tenha as DLLs da Unity na pasta lib/ -->
+    <!-- Exemplo: <Reference Include="UnityEngine"><HintPath>lib/UnityEngine.dll</HintPath></Reference> -->
+  </ItemGroup>
+
+</Project>
